@@ -14,6 +14,9 @@
 		4A118691211C109300FB4723 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A11868F211C109300FB4723 /* LaunchScreen.storyboard */; };
 		4A11869C211C109300FB4723 /* OneListenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A11869B211C109300FB4723 /* OneListenTests.swift */; };
 		4A1186A7211C109300FB4723 /* OneListenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1186A6211C109300FB4723 /* OneListenUITests.swift */; };
+		4A68C0F3211C153900AAC083 /* OLHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A68C0F2211C153900AAC083 /* OLHomeController.swift */; };
+		4A68C0F6211C1B3900AAC083 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A68C0F5211C1B3900AAC083 /* AVFoundation.framework */; };
+		4A68C0F9211C277D00AAC083 /* OLRecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A68C0F8211C277D00AAC083 /* OLRecordManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		4A1186A2211C109300FB4723 /* OneListenUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OneListenUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A1186A6211C109300FB4723 /* OneListenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneListenUITests.swift; sourceTree = "<group>"; };
 		4A1186A8211C109300FB4723 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4A68C0F2211C153900AAC083 /* OLHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OLHomeController.swift; sourceTree = "<group>"; };
+		4A68C0F5211C1B3900AAC083 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		4A68C0F8211C277D00AAC083 /* OLRecordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OLRecordManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A68C0F6211C1B3900AAC083 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +88,7 @@
 				4A11869A211C109300FB4723 /* OneListenTests */,
 				4A1186A5211C109300FB4723 /* OneListenUITests */,
 				4A118681211C109100FB4723 /* Products */,
+				4A68C0F4211C1B3900AAC083 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -129,6 +137,7 @@
 		4A68C0EE211C142900AAC083 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				4A68C0F7211C272700AAC083 /* Tools */,
 				4A68C0EF211C142900AAC083 /* Controller */,
 				4A68C0F0211C142900AAC083 /* Model */,
 				4A68C0F1211C142900AAC083 /* View */,
@@ -139,6 +148,7 @@
 		4A68C0EF211C142900AAC083 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4A68C0F2211C153900AAC083 /* OLHomeController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -155,6 +165,22 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		4A68C0F4211C1B3900AAC083 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4A68C0F5211C1B3900AAC083 /* AVFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4A68C0F7211C272700AAC083 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4A68C0F8211C277D00AAC083 /* OLRecordManager.swift */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,7 +315,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A11868C211C109100FB4723 /* OneListen.xcdatamodeld in Sources */,
+				4A68C0F9211C277D00AAC083 /* OLRecordManager.swift in Sources */,
 				4A118684211C109100FB4723 /* AppDelegate.swift in Sources */,
+				4A68C0F3211C153900AAC083 /* OLHomeController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
