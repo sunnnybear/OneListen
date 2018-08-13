@@ -26,7 +26,7 @@
                                 <state key="normal" title="Play">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <state key="selected">
+                                <state key="selected" title="Stop">
                                     <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -47,12 +47,43 @@
                                     <action selector="recordingTap:" destination="NFk-MD-SKb" eventType="touchUpInside" id="ZJ8-wP-nCa"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5BB-4v-BJe">
+                                <rect key="frame" x="287" y="420" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="hgt-lG-OAT"/>
+                                    <constraint firstAttribute="width" constant="25" id="qsp-w8-vba"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" backgroundImage="laba_select"/>
+                                <state key="selected" backgroundImage="laba"/>
+                                <connections>
+                                    <action selector="outputPortButtonTap:" destination="NFk-MD-SKb" eventType="touchUpInside" id="2ah-38-71h"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ea7-hn-adk">
+                                <rect key="frame" x="16" y="198" width="56" height="26"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RXq-Wp-s4O">
+                                <rect key="frame" x="303" y="198" width="56" height="26"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="vbq-2x-BtL" firstAttribute="trailing" secondItem="5BB-4v-BJe" secondAttribute="trailing" constant="63" id="H6B-Zd-CWk"/>
+                            <constraint firstItem="vbq-2x-BtL" firstAttribute="trailing" secondItem="RXq-Wp-s4O" secondAttribute="trailing" constant="16" id="HUW-8K-oPp"/>
+                            <constraint firstItem="hkr-3L-UXL" firstAttribute="top" secondItem="5BB-4v-BJe" secondAttribute="bottom" constant="28.5" id="K5t-HR-CX8"/>
                             <constraint firstItem="mke-EM-flH" firstAttribute="centerY" secondItem="sbx-c6-Ylx" secondAttribute="centerY" multiplier="1.5" id="RjY-Cc-8Td"/>
+                            <constraint firstItem="ea7-hn-adk" firstAttribute="top" secondItem="vbq-2x-BtL" secondAttribute="top" constant="178" id="SMh-by-vjZ"/>
+                            <constraint firstItem="RXq-Wp-s4O" firstAttribute="bottom" secondItem="ea7-hn-adk" secondAttribute="bottom" id="XAl-NB-15H"/>
                             <constraint firstItem="mke-EM-flH" firstAttribute="centerX" secondItem="sbx-c6-Ylx" secondAttribute="centerX" multiplier="0.5" id="kT9-54-T5A"/>
                             <constraint firstItem="hkr-3L-UXL" firstAttribute="centerX" secondItem="sbx-c6-Ylx" secondAttribute="centerX" multiplier="1.5" id="lH3-v9-WoP"/>
+                            <constraint firstItem="ea7-hn-adk" firstAttribute="leading" secondItem="vbq-2x-BtL" secondAttribute="leading" constant="16" id="ngJ-Le-gtx"/>
                             <constraint firstItem="hkr-3L-UXL" firstAttribute="centerY" secondItem="sbx-c6-Ylx" secondAttribute="centerY" multiplier="1.5" id="vCH-sZ-jtE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vbq-2x-BtL"/>
@@ -60,13 +91,20 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="endTimeLabel" destination="RXq-Wp-s4O" id="U26-g5-o9v"/>
+                        <outlet property="outputPortButton" destination="5BB-4v-BJe" id="JKE-z7-1yh"/>
                         <outlet property="playButton" destination="hkr-3L-UXL" id="Mjg-Vu-Yj8"/>
                         <outlet property="recordButton" destination="mke-EM-flH" id="TwT-Cs-Tqa"/>
+                        <outlet property="startTimeLabel" destination="ea7-hn-adk" id="ZFA-zi-yNI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y8a-PQ-7Un" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="282" y="-185"/>
+            <point key="canvasLocation" x="-606" y="-179"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="laba" width="16" height="16"/>
+        <image name="laba_select" width="16" height="16"/>
+    </resources>
 </document>

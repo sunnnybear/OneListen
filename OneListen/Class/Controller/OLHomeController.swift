@@ -19,15 +19,27 @@ class OLHomeController: UIViewController {
     var isAllowed:Bool = false
     
     //定义音频的编码参数
-    let recordSettings = [AVSampleRateKey : NSNumber(value: Float(44100.0)),//声音采样率
+    let recordSettings = [
+        AVSampleRateKey : NSNumber(value: Float(44100.0)),//声音采样率
         AVFormatIDKey : NSNumber(value: Int32(kAudioFormatMPEG4AAC)),//编码格式
         AVNumberOfChannelsKey : NSNumber(value: 1),//采集音轨
         AVEncoderAudioQualityKey : NSNumber(value: Int32(AVAudioQuality.medium.rawValue))]//音频质量
-
+    var startCount = 0
+    var endCount = 0
+    
+    var timer = Timer()
+    var isPlaying = false
     
     @IBOutlet weak var recordButton: UIButton!
     
     @IBOutlet weak var playButton: UIButton!
+    
+    @IBOutlet weak var outputPortButton: UIButton!
+    
+    @IBOutlet weak var startTimeLabel: UILabel!
+    
+    @IBOutlet weak var endTimeLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         do {
@@ -37,6 +49,7 @@ class OLHomeController: UIViewController {
             audioRecorder.delegate = self
             //准备录音
             audioRecorder.prepareToRecord()
+            try! audioSession.overrideOutputAudioPort(.speaker)
         }  catch let error as NSError{
             print(error)
         }
@@ -74,6 +87,8 @@ class OLHomeController: UIViewController {
                 do {
                     try audioSession.setActive(true)
                     audioRecorder.record()
+                    endCount = 0
+                    timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
                 }catch let error as NSError{
                     print(error)
                 }
@@ -85,16 +100,26 @@ class OLHomeController: UIViewController {
                 audioRecorder.stop()
                 do {
                     try audioSession.setActive(false)
+                    timer.invalidate()
                 } catch let error as NSError{
                     print(error)
                 }
             }
 
         }
-        
+      
         
     }
     
+    @IBAction func outputPortButtonTap(_ sender: Any) {
+        outputPortButton.isSelected = !outputPortButton.isSelected
+        if outputPortButton.isSelected {
+            try! audioSession.overrideOutputAudioPort(.speaker)
+        }
+        else{
+            try! audioSession.overrideOutputAudioPort(.none)
+        }
+    }
     @IBAction func playingTap(_ sender: Any) {
         playButton.isSelected = !playButton.isSelected
         if playButton.isSelected {
@@ -105,6 +130,7 @@ class OLHomeController: UIViewController {
                     if let url = url{
                         try audioPlayer = AVAudioPlayer(contentsOf: url as URL)
                         audioPlayer.delegate = self
+                        
                         audioPlayer.play()
                     }
                 } catch let error as NSError{
@@ -117,7 +143,17 @@ class OLHomeController: UIViewController {
         }
         
     }
+    
+    @objc func updateTimer(){
+        endCount += 1;
+        let min = endCount / 60
+        let sec = endCount % 60
+        self.endTimeLabel.text = NSString(format: "%02d:%02d", min,sec) as String
+        
+    }
 }
+
+
 
 
 extension OLHomeController:AVAudioRecorderDelegate{
