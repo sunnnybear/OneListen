@@ -132,6 +132,27 @@ class OLHomeController: UIViewController {
                         audioPlayer.delegate = self
                         
                         audioPlayer.play()
+                        
+                        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateStartTimer), userInfo: nil, repeats: true)
+                    }
+                } catch let error as NSError{
+                    print(error)
+                }
+            }
+            else{
+                audioRecorder.stop()
+                timer.invalidate()
+                recordButton.isSelected = false
+                do {
+                    //创建音频播放器AVAudioPlayer，用于在录音完成之后播放录音
+                    let url:NSURL? = audioRecorder.url as NSURL
+                    if let url = url{
+                        try audioPlayer = AVAudioPlayer(contentsOf: url as URL)
+                        audioPlayer.delegate = self
+                        
+                        audioPlayer.play()
+                        
+                        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateStartTimer), userInfo: nil, repeats: true)
                     }
                 } catch let error as NSError{
                     print(error)
@@ -140,6 +161,7 @@ class OLHomeController: UIViewController {
         }
         else{
             audioRecorder.pause()
+            timer.invalidate()
         }
         
     }
@@ -149,6 +171,18 @@ class OLHomeController: UIViewController {
         let min = endCount / 60
         let sec = endCount % 60
         self.endTimeLabel.text = NSString(format: "%02d:%02d", min,sec) as String
+        
+    }
+    
+    @objc func updateStartTimer(){
+        startCount += 1;
+        if startCount >= endCount {
+            timer.invalidate()
+            startCount = 0
+        }
+        let min = startCount / 60
+        let sec = startCount % 60
+        self.startTimeLabel.text = NSString(format: "%02d:%02d", min,sec) as String
         
     }
 }
